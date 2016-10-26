@@ -66,6 +66,36 @@ var pantry = {
 };
 
 
+// Bartender Constructor
+
+var Bartender = function(thisName) {
+
+	this.name = thisName;
+
+};
+
+
+// Create method which grabs random pantry items according to user answers
+
+Bartender.prototype.createDrink = function(questions) {
+
+	var drinkArr = [];
+
+	for (var category in questions) {
+
+		if (questions[category].answer) {
+
+			var randomNum = Math.floor(Math.random() * 3);
+			var addToDrink = pantry[category].ingredient[randomNum];
+			drinkArr.push(addToDrink);
+		}
+	} 
+
+	var newDrink = drinkArr.join(', ');
+	return newDrink;
+}
+
+
 // Triggered on click, assings answer and swaps question displayed 
 
 function forEveryQuestion(questionNum, answer) {
@@ -94,6 +124,10 @@ function forEveryQuestion(questionNum, answer) {
 
 		case 4:
 			questions.fruity.answer = answer;
+			var bartender = new Bartender("Parret O'Hara");
+			var drinkResult = bartender.createDrink(questions);
+			console.log(drinkResult);
+			endOfQuestions(drinkResult);
 			break;	
 
 	}
@@ -127,6 +161,15 @@ function askMe(thatQuestion) {
 	});
 })();
 
+
+
+function endOfQuestions(drinkResult) {
+
+	$('.q-and-a').empty();
+
+	$('.q-and-a').append('<p class="drink-results">Yer drink be served: ' + drinkResult + '</p>');
+
+}
 
 
 // Display first question
