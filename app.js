@@ -57,11 +57,11 @@ var Ingredient = function(thisIngredient) {
 
 var pantry = {
 
-	strong: new Ingredient(["Glug of rum", "slug of whisky", "splash of gin"]),
-	salty: new Ingredient(["Olive on a stick", "salt-dusted rim", "rasher of bacon"]),
-	bitter: new Ingredient(["Shake of bitters", "splash of tonic", "twist of lemon peel"]),
-	sweet: new Ingredient(["Sugar cube", "spoonful of honey", "splash of cola"]),
-	fruity: new Ingredient(["Slice of orange", "dash of cassis", "cherry on top"])
+	strong: new Ingredient(["glug of rum", "slug of whisky", "splash of gin"]),
+	salty: new Ingredient(["olive on a stick", "salt-dusted rim", "rasher of bacon"]),
+	bitter: new Ingredient(["shake of bitters", "splash of tonic", "twist of lemon peel"]),
+	sweet: new Ingredient(["sugar cube", "spoonful of honey", "splash of cola"]),
+	fruity: new Ingredient(["slice of orange", "dash of cassis", "cherry on top"])
 
 };
 
@@ -91,10 +91,19 @@ Bartender.prototype.createDrink = function(questions) {
 		}
 	} 
 
-	var newDrink = drinkArr.join(', ');
+	addToDrink = cocktailNames.adjectives[randomNum] + " " + cocktailNames.nouns[randomNum];
+	console.log(addToDrink);
+	var newDrink = drinkArr.join(', ') + " - - Also known ter be " + addToDrink;
 	return newDrink;
 }
 
+
+var cocktailNames = {
+
+	adjectives: ['Rowdy', 'Perky', 'Greasy'],
+	nouns: ['Cannibal', 'Toadstool', 'Bastard']
+
+}
 
 // Triggered on click, assings answer and swaps question displayed 
 
